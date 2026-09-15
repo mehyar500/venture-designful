@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Designful — Your deliverable</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7c6cf6">
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="index.html">Design<span>ful</span></a>
+    <nav class="nav">
+      <a href="index.html#catalog">Catalog</a>
+      <a href="index.html#bundles">Bundles</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div id="deliverable-host"></div>
+</main>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Designful. Teaser free, deliverables $49, honesty included.</span>
+    <span><a href="index.html#faq">FAQ</a> · <a href="mailto:info@mehyar.us">Contact</a></span>
+  </div>
+</footer>
+
+<script src="catalog.js"></script>
+<script src="app.js"></script>
+<script type="module" src="compositor.js"></script>
+<script>
+"use strict";
+/* Deliverable viewer.
+ * PROD: fetches /api/designful/deliverable?token= and renders the real
+ * manifest — text files inline, image assets as canvas composites
+ * (text-free artwork + real typography drawn by compositor.js), each with
+ * a PNG download button.
+ * DEV (?dev=1): renders the sample manifest below so the layout is
+ * reviewable with zero backend.
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  var host = document.getElementById("deliverable-host");
+  var qs = new URLSearchParams(window.location.search);
+  var token = qs.get("token");
+  var feature = qs.get("feature");
+
+  if (!token) {
+    host.innerHTML =
+      '<section class="centered"><h1>No token provided.</h1>' +
+      '<p class="lede">This page needs the access token from your delivery email.</p>' +
+      '<a class="btn btn-primary" href="success.html">Enter your token</a></section>';
+    return;
+  }
+
+  if (DEV_MODE) {
+    renderManifest(host, SAMPLE_MANIFEST, token);
+    return;
+  }
+
+  host.innerHTML = '<section class="centered"><p class="lede">Loading your deliverable…</p></section>';
+  fetch("/api/designful/deliverable?token=" + encodeURIComponent(token), { cache: "no-store" })
+    .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }); })
+    .then(function (res) {
+      var b = res.body;
+      if (!b || b.ok !== true) {
+        var msg = (b && b.error) || ("HTTP " + res.status);
+        if (msg === "not_ready") {
+          host.innerHTML =
+            '<section class="centered"><h1>Still in the oven.</h1>' +
+            '<p class="lede">Your deliverable is being produced — usually within 15 minutes. This page will show it as soon as it\'s ready; no need to re-enter your token.</p></section>';
+        } else {
+          host.innerHTML =
+            '<section class="centered"><h1>Token not found.</h1>' +
+            '<p class="lede">That token doesn\'t match any deliverable (' + esc(msg) + '). Check your email for the exact link.</p></section>';
+        }
+        return;
+      }
+      var keys = Object.keys(b.manifests || {});
+      var key = (feature && b.manifests[feature]) ? feature : keys[0];
+      if (!key) {
+        host.innerHTML = '<section class="centered"><h1>Nothing here yet.</h1><p class="lede">No deliverables are attached to this token.</p></section>';
+        return;
+      }
+      if (keys.length > 1) {
+        var tabs = '<div class="choices" style="margin:18px 0">';
+        keys.forEach(function (k) {
+          tabs += '<a class="chip' + (k === key ? " active" : "") + '" href="deliverable.html?token=' +
+            encodeURIComponent(token) + "&feature=" + encodeURIComponent(k) + '">' + esc(featureName(k)) + "</a>";
+        });
+        host.innerHTML = tabs + "</div>";
+      }
+      var section = document.createElement("div");
+      host.appendChild(section);
+      renderManifest(section, b.manifests[key], token);
+    })
+    .catch(function () {
+      host.innerHTML =
+        '<section class="centered"><h1>Couldn\'t load.</h1>' +
+        '<p class="lede">The deliverable service didn\'t respond. Check your connection and reload.</p></section>';
+    });
+});
+
+function featureName(featureId) {
+  var map = {
+    "homepage-teardown": "Homepage Teardown",
+    "logo-refresh": "Logo Refresh",
+    "ad-creative-pack": "Ad Creative Pack",
+    "social-launch-kit": "Social Launch Kit",
+    "hero-rewrite": "Hero Rewrite"
+  };
+  return map[featureId] || featureId;
+}
+
+/* Renders one manifest: {summary, generated_at, files:[{name,mime,storage,url,
+ * label, content|content_preview, overlay:{kind,feature,overlay,warnings}, dims}]} */
+function renderManifest(host, manifest, token) {
+  var C = window.DesignfulCompositor;
+  var html = '<a class="back" href="index.html#catalog">← Back to catalog</a>';
+  html += '<section class="feature-hero"><p class="eyebrow">Your deliverable</p>';
+  html += "<h1>" + esc(manifest.title || featureName(manifest.feature || "")) + "</h1>";
+  if (manifest.summary) html += '<p class="lede">' + esc(manifest.summary) + "</p>";
+  if (manifest.generated_at) {
+    html += '<p class="turnaround">Delivered ' + esc(manifest.generated_at) + " · full commercial rights</p>";
+  }
+  html += "</section>";
+
+  if (DEV_MODE) {
+    html += '<div class="dev-fallback" style="margin-top:18px"><strong>Dev sample.</strong> ' +
+      "In production this page fetches the manifest for your token and renders the real deliverable. " +
+      "What follows is sample content showing the layout, including a live canvas composite.</div>";
+  }
+
+  var files = manifest.files || [];
+  var images = files.filter(isImageFile);
+  var texts = files.filter(function (f) { return !isImageFile(f); });
+
+  if (images.length && C) {
+    html += '<section><h2>Assets — download the finished PNGs</h2><div class="gallery" id="composite-gallery"></div></section>';
+  }
+  texts.forEach(function (f) {
+    html += '<section class="report"><h3>' + esc(f.label || f.name) + "</h3>";
+    var body = f.content || f.content_preview || "";
+    if (body) {
+      html += f.mime === "text/html"
+        ? '<div class="result-body">' + body + "</div>"
+        : "<pre>" + esc(body) + "</pre>";
+    } else if (f.url) {
+      html += '<p><a class="btn" href="' + esc(f.url) + '" download>Download ' + esc(f.name) + "</a></p>";
+    } else if (f.error) {
+      html += '<p class="status error">This asset failed production QC and was withheld: ' + esc(f.error) + ". Reply to your delivery email for a re-render.</p>";
+    }
+    html += "</section>";
+  });
+
+  html += '<section><div class="whatyouget"><h3>Questions or a redo?</h3>' +
+    '<p>You get one free redo within 7 days if anything here is unusable. ' +
+    'Reply to your delivery email or write to info@mehyar.us.</p></div></section>';
+
+  host.innerHTML = html;
+
+  /* Composite each image asset: text-free artwork + real typography. */
+  if (images.length && C) {
+    var gallery = document.getElementById("composite-gallery");
+    images.forEach(function (f, i) {
+      var fig = document.createElement("figure");
+      fig.style.margin = "0";
+      var dims = dimsFor(f);
+      var canvas = document.createElement("canvas");
+      canvas.width = dims[0];
+      canvas.height = dims[1];
+      canvas.style.maxWidth = "100%";
+      canvas.style.height = "auto";
+      canvas.style.borderRadius = "12px";
+      fig.appendChild(canvas);
+      var cap = document.createElement("figcaption");
+      cap.style.cssText = "color:var(--muted);font-size:13px;margin:8px 0";
+      cap.textContent = f.label || f.name;
+      fig.appendChild(cap);
+      var btn = document.createElement("button");
+      btn.className = "btn";
+      btn.textContent = "Download PNG";
+      btn.addEventListener("click", function () {
+        C.downloadCanvas(canvas, (f.name || ("asset-" + (i + 1))).replace(/\.[a-z]+$/i, "") + "-final.png");
+      });
+      fig.appendChild(btn);
+      gallery.appendChild(fig);
+      var src = f.url || f.src;
+      if (!src) {
+        cap.textContent += " — artwork unavailable";
+        return;
+      }
+      C.renderComposite(canvas, {
+        artwork: src,
+        overlay: f.overlay || {},
+        kind: (f.overlay && f.overlay.kind) || "generic",
+      }).catch(function () {
+        cap.textContent += " — failed to render";
+      });
+    });
+  }
+}
+
+function isImageFile(f) {
+  if (f.url && /\.(png|jpe?g|webp)(\?|$)/i.test(f.url)) return true;
+  if (/^image\//.test(f.mime || "")) return true;
+  return /\.(png|jpe?g|webp)$/i.test(f.name || "");
+}
+
+function dimsFor(f) {
+  /* Canvas ratios mirror the production art direction. */
+  if (f.dims) {
+    var m = /^(\d+)x(\d+)$/.exec(f.dims);
+    if (m) {
+      var w = Math.min(1080, +m[1]);
+      return [w, Math.round((w * +m[2]) / +m[1])];
+    }
+  }
+  var kind = (f.overlay && f.overlay.kind) || "";
+  if (kind === "ad-creative" && /9x16|9-16|story/i.test(f.name || "")) return [1080, 1920];
+  if (kind === "social-template") return [1080, 1350];
+  return [1080, 1080];
+}
+
+/* Inline SVG placeholders — no network, no external images in dev. */
+function svgPlaceholder(label, bg, fg) {
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800">' +
+    '<rect width="800" height="800" fill="' + bg + '"/>' +
+    '<text x="400" y="400" font-family="sans-serif" font-size="36" fill="' + fg + '" text-anchor="middle">' + label + "</text>" +
+    "</svg>";
+  return "data:image/svg+xml," + encodeURIComponent(svg);
+}
+
+/* Sample manifest so the layout can be reviewed with zero backend. */
+var SAMPLE_MANIFEST = {
+  feature: "ad-creative-pack",
+  title: "Ad Creative Pack",
+  generated_at: "2026-09-15",
+  summary: "Sample deliverable: 5 creatives × 2 ratios with composited typography. The headline below is drawn live on canvas from the overlay spec — the artwork itself carries no text.",
+  files: [
+    {
+      name: "ad-1-1x1.png", mime: "image/png", storage: "dev:inline",
+      label: "Creative 1 — Cozy evening ritual (1:1)",
+      src: svgPlaceholder("text-free artwork", "#2a1f16", "#d9a05b"),
+      overlay: {
+        kind: "ad-creative",
+        feature: "ad-creative-pack",
+        overlay: {
+          headline: "Your evenings, upgraded in 21 days",
+          brand: "Ember & Oak",
+          cta: "Shop the collection"
+        }
+      }
+    },
+    {
+      name: "teardown.json", mime: "application/json", storage: "dev:inline",
+      label: "Sample report file",
+      content_preview: '{ "score": 62, "note": "sample" }'
+    }
+  ]
+};
+</script>
+</body>
+</html>

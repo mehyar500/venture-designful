@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Designful — Order confirmed</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7c6cf6">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="index.html">Design<span>ful</span></a>
+    <nav class="nav">
+      <a href="index.html#catalog">Catalog</a>
+      <a href="index.html#bundles">Bundles</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="centered">
+    <div class="check">✓</div>
+    <h1>You're in. Check your email.</h1>
+    <p class="lede">Receipt and order details are on their way. Your deliverable is produced automatically — usually within 15 minutes — and lands at the email you checked out with.</p>
+  </section>
+
+  <section>
+    <h2>Already have your access token?</h2>
+    <p class="lede">The email we send you carries a private access token. Paste it here to jump straight to your deliverable.</p>
+    <form id="token-form" novalidate>
+      <div class="token-form">
+        <input type="text" id="token-input" placeholder="paste your token" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <button type="submit" class="btn btn-primary">View deliverable</button>
+      </div>
+      <div class="status" id="token-status"></div>
+    </form>
+    <p class="lede" style="font-size:14px;margin-top:12px">No token yet? It arrives with your receipt — usually within a minute.</p>
+  </section>
+
+  <section id="bundle-picker-section" hidden>
+    <h2>Your bundle: pick your features</h2>
+    <p class="lede" id="bundle-picker-sub">Choose which features this order unlocks. You can generate them one at a time.</p>
+    <div id="bundle-picker"></div>
+    <p class="status" id="bundle-picker-status"></p>
+    <div id="bundle-generate" style="margin-top:16px"></div>
+  </section>
+
+  <section>
+    <div class="whatyouget">
+      <h3>What happens next</h3>
+      <ol class="steps">
+        <li><strong>We start immediately</strong><p>Your inputs go into the production recipe for the feature you bought.</p></li>
+        <li><strong>You get a delivered email</strong><p>Usually within 15 minutes, your deliverable and its access token arrive.</p></li>
+        <li><strong>It lives at your private link</strong><p>deliverable.html with your token. The report stays available there whenever you need it.</p></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Designful. Teaser free, deliverables $49, honesty included.</span>
+    <span><a href="index.html#faq">FAQ</a> · <a href="mailto:info@mehyar.us">Contact</a></span>
+  </div>
+</footer>
+
+<script src="catalog.js"></script>
+<script src="app.js"></script>
+<script>
+/* ---- bundle feature picker ----
+ * Shown for bundle orders (product from ?product= or the last checkout).
+ * Lets the buyer choose which features the bundle unlocks, then generates
+ * each one against their order token via /api/designful/generate.
+ */
+(function () {
+  "use strict";
+  var qs = new URLSearchParams(window.location.search);
+  var productId = qs.get("product") || null;
+  try {
+    if (!productId) productId = localStorage.getItem("designful_last_product");
+  } catch (e) { /* private mode */ }
+  var product = productId ? DESIGNFUL_CATALOG.find(function (p) { return p.id === productId; }) : null;
+  if (!product || product.kind !== "bundle") return; // singles don't need a picker
+
+  var section = document.getElementById("bundle-picker-section");
+  var host = document.getElementById("bundle-picker");
+  var status = document.getElementById("bundle-picker-status");
+  var genHost = document.getElementById("bundle-generate");
+  section.hidden = false;
+
+  var singles = DESIGNFUL_CATALOG.filter(function (p) { return p.kind === "single"; });
+  var slots = product.id === "designful-bundle-3" ? 3 : singles.length;
+  var stored = [];
+  try {
+    stored = JSON.parse(localStorage.getItem("designful_bundle_choices") || "[]");
+  } catch (e) { stored = []; }
+  var chosen = stored.filter(function (id) {
+    return singles.some(function (p) { return p.id === id; });
+  }).slice(0, slots);
+
+  document.getElementById("bundle-picker-sub").textContent =
+    product.id === "designful-bundle-3"
+      ? "Pick any 3 features. Your picks are saved on this device."
+      : "Your Studio Pass covers all 5 features. Generate them one at a time.";
+
+  function save() {
+    try {
+      localStorage.setItem("designful_bundle_choices", JSON.stringify(chosen));
+    } catch (e) { /* private mode */ }
+    renderGenerate();
+  }
+
+  function renderChoices() {
+    host.innerHTML = "";
+    var wrap = document.createElement("div");
+    wrap.className = "choices";
+    singles.forEach(function (p) {
+      var label = document.createElement("label");
+      label.className = "chip";
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.value = p.id;
+      input.checked = chosen.indexOf(p.id) !== -1;
+      if (product.id === "designful-studio-pass") input.disabled = true; // all included
+      input.addEventListener("change", function () {
+        if (input.checked) {
+          if (chosen.length >= slots) {
+            status.textContent = "A 3-pack unlocks exactly 3 features — uncheck one first.";
+            status.className = "status error";
+            input.checked = false;
+            return;
+          }
+          chosen.push(p.id);
+        } else {
+          chosen = chosen.filter(function (id) { return id !== p.id; });
+        }
+        status.textContent = "";
+        status.className = "status";
+        save();
+      });
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(" " + p.name));
+      wrap.appendChild(label);
+    });
+    host.appendChild(wrap);
+  }
+
+  function featureSlug(productId) {
+    var p = DESIGNFUL_CATALOG.find(function (x) { return x.id === productId; });
+    return p ? p.slug : productId;
+  }
+
+  function renderGenerate() {
+    genHost.innerHTML = "";
+    if (!chosen.length) {
+      genHost.innerHTML = '<p class="lede">Pick your features above to start generating.</p>';
+      return;
+    }
+    var h = document.createElement("h3");
+    h.textContent = "Generate your deliverables";
+    genHost.appendChild(h);
+    var note = document.createElement("p");
+    note.className = "lede";
+    note.style.fontSize = "14px";
+    note.textContent = "Paste your order token above, then generate each feature. Each deliverable usually takes a few minutes.";
+    genHost.appendChild(note);
+    chosen.forEach(function (id) {
+      var p = DESIGNFUL_CATALOG.find(function (x) { return x.id === id; });
+      var row = document.createElement("div");
+      row.className = "bundle-gen-row";
+      row.style.cssText = "display:flex;gap:12px;align-items:center;margin:8px 0";
+      var name = document.createElement("strong");
+      name.textContent = p.name;
+      name.style.flex = "1";
+      var btn = document.createElement("button");
+      btn.className = "btn btn-primary";
+      btn.textContent = "Generate";
+      var st = document.createElement("span");
+      st.className = "status";
+      btn.addEventListener("click", function () {
+        var token = document.getElementById("token-input").value.trim();
+        if (!token) {
+          st.textContent = "Paste your order token above first.";
+          st.className = "status error";
+          return;
+        }
+        btn.disabled = true;
+        st.textContent = "Generating — usually a few minutes…";
+        st.className = "status busy";
+        fetch(GENERATE_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ order_token: token, feature: featureSlug(id), inputs: {} })
+        })
+          .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }); })
+          .then(function (res) {
+            btn.disabled = false;
+            if (res.body && res.body.ok) {
+              st.textContent = "";
+              st.className = "status";
+              var a = document.createElement("a");
+              a.className = "btn";
+              a.href = "deliverable.html?token=" + encodeURIComponent(token) + "&feature=" + encodeURIComponent(featureSlug(id));
+              a.textContent = "View deliverable";
+              row.appendChild(a);
+              btn.textContent = "Regenerate";
+            } else {
+              st.textContent = "Failed: " + ((res.body && res.body.error) || res.status);
+              st.className = "status error";
+            }
+          })
+          .catch(function () {
+            btn.disabled = false;
+            st.textContent = DEV_MODE ? "Backend not running (dev mode)." : "Request failed — try again.";
+            st.className = "status error";
+          });
+      });
+      row.appendChild(name);
+      row.appendChild(btn);
+      row.appendChild(st);
+      genHost.appendChild(row);
+    });
+  }
+
+  if (product.id === "designful-studio-pass") {
+    chosen = singles.map(function (p) { return p.id; });
+    save();
+  }
+  renderChoices();
+  renderGenerate();
+})();
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("token-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var token = document.getElementById("token-input").value.trim();
+    var status = document.getElementById("token-status");
+    if (!token) {
+      status.textContent = "Paste the token from your email first.";
+      status.className = "status error";
+      return;
+    }
+    window.location.href = "deliverable.html?token=" + encodeURIComponent(token);
+  });
+});
+</script>
+</body>
+</html>
