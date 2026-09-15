@@ -8,6 +8,22 @@
 // - @cf/meta/llama-3.2-11b-vision-instruct FAILS (error 3030) when one call
 //   carries two image_url entries. runVision() takes exactly ONE image;
 //   fan out with Promise.all if you need several.
+// - Workers AI json_object mode on some models (proven 2026-09-15 on
+//   @cf/meta/llama-3.3-70b-instruct-fp8-fast) returns result.response
+//   PRE-PARSED as an object, not a string — String(obj) gives "[object Object]"
+//   and silently kills every JSON parse downstream. aiText() below serializes
+//   objects back to JSON so parseJson() sees the real payload either way.
+
+/**
+ * Extract generated text from an env.AI.run() result (string or pre-parsed
+ * object; see the model lesson above).
+ */
+function aiText(out) {
+  if (typeof out === "string") return out;
+  const r = out && out.response;
+  if (r == null) return "";
+  return typeof r === "string" ? r : JSON.stringify(r);
+}
 
 export const MODELS = {
   text: "@cf/meta/llama-3.3-70b-instruct-fp8-fast", // strong writing/reasoning
@@ -25,8 +41,7 @@ export async function runText(env, model, messages, opts = {}) {
   const body = { messages, max_tokens, temperature };
   if (jsonMode) body.response_format = { type: "json_object" };
   const out = await env.AI.run(model, body);
-  const text = typeof out === "string" ? out : (out && out.response) || "";
-  return String(text).trim();
+  return aiText(out).trim();
 }
 
 /**
@@ -109,8 +124,7 @@ export async function runVision(env, imageUrl, prompt, opts = {}) {
     ],
     max_tokens: opts.max_tokens || 2048,
   });
-  const text = typeof out === "string" ? out : (out && out.response) || "";
-  return String(text).trim();
+  return aiText(out).trim();
 }
 
 /** Parse model output as JSON; tolerates ```json fences. Returns null on failure.
