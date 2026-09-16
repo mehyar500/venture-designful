@@ -3,11 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Designful — Design work that ships in minutes, not 4 weeks</title>
-<meta name="description" content="AI design deliverables with a free teaser before you pay. $49 per feature, one-time. No agency, no retainer, no subscription.">
+<title>Designful — AI design deliverables in ~15 minutes, $49 flat</title>
+<meta name="description" content="See a free preview of real AI design output before you pay. Homepage teardowns, logo refreshes, ad creatives, social kits, hero rewrites — $49 per feature, one-time, 7-day redo-or-refund.">
+<link rel="canonical" href="https://designful.mehyar.us/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Designful">
+<meta property="og:title" content="Designful — AI design deliverables in ~15 minutes, $49 flat">
+<meta property="og:description" content="Free preview of real AI design output. $49 per feature, one-time. No agency, no retainer, no subscription.">
+<meta property="og:url" content="https://designful.mehyar.us/">
+<meta property="og:image" content="https://designful.mehyar.us/demo-poster.jpg">
+<meta property="og:image:alt" content="Designful product demo — a real AI hero rewrite preview">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Designful — AI design deliverables in ~15 minutes, $49 flat">
+<meta name="twitter:description" content="Free preview of real AI design output. $49 per feature, one-time. No agency, no retainer, no subscription.">
+<meta name="twitter:image" content="https://designful.mehyar.us/demo-poster.jpg">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#7c6cf6">
+<meta name="theme-color" content="#0a1220">
 <link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Designful","url":"https://designful.mehyar.us/","logo":"https://designful.mehyar.us/demo-poster.jpg","sameAs":[],"contactPoint":{"@type":"ContactPoint","email":"info@mehyar.us","contactType":"customer service"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Designful","url":"https://designful.mehyar.us/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What does the free preview include?","acceptedAnswer":{"@type":"Answer","text":"Exactly what each feature page says — real output, watermarked where it includes images. If the preview doesn't impress you, don't pay."}},
+{"@type":"Question","name":"Is this really AI doing the work?","acceptedAnswer":{"@type":"Answer","text":"Yes. Large language models plus image models on Cloudflare, with structured recipes per feature. That's why it's $49 and minutes instead of $4,900 and 4 weeks."}},
+{"@type":"Question","name":"What exactly do I get for $49?","acceptedAnswer":{"@type":"Answer","text":"The full deliverable for that feature — e.g. a 10-point annotated homepage teardown PDF, or 5 ad creatives in 2 ratios with 3 headline variants each. Every feature page lists exactly what's included."}},
+{"@type":"Question","name":"Do you keep my logo / screenshots / copy?","acceptedAnswer":{"@type":"Answer","text":"Inputs are kept only long enough to produce the deliverable, then deleted. Designful never sells data, never trains on it, and never uses a brand in marketing without permission."}},
+{"@type":"Question","name":"What if the deliverable is bad?","acceptedAnswer":{"@type":"Answer","text":"Email within 7 days and Designful will redo it once, free. If it's still not usable, you get a full refund."}},
+{"@type":"Question","name":"Who owns the output?","acceptedAnswer":{"@type":"Answer","text":"You do. Full commercial rights, forever."}},
+{"@type":"Question","name":"Is there a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. Every feature is a one-time $49. Bundles are one-time too."}}
+]}
+</script>
 </head>
 <body>
 
@@ -15,101 +44,382 @@
   <div class="inner">
     <a class="brand" href="index.html">Design<span>ful</span></a>
     <nav class="nav">
+      <a href="work.html">Work</a>
       <a href="index.html#catalog">Catalog</a>
-      <a href="index.html#bundles">Bundles</a>
+      <a href="index.html#reviews">Reviews</a>
       <a href="index.html#faq">FAQ</a>
+      <a class="nav-cta" href="index.html#catalog">Start a project</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <section class="hero">
-    <p class="eyebrow">AI design counter — not an agency</p>
-    <h1>Design work that ships in minutes, not 4 weeks.</h1>
-    <p class="lede">Try every feature free first — the teaser is real output, not a demo. Unlock the full deliverable for $49, one time. No retainer. No subscription. No "let's hop on a call."</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="#catalog">Browse the catalog</a>
-      <a class="btn btn-ghost" href="#how">How it works</a>
+  <!-- ============ HERO — compact, visual-first ============ -->
+  <section class="hero hero-compact">
+    <p class="eyebrow">AI design studio — no agency, no retainer</p>
+    <h1>Design work that ships in <span class="grad">minutes</span>, not 4 weeks.</h1>
+    <p class="hero-sub">Free preview first — real output. $49 one-time if you love it.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#work">See the work</a>
     </div>
-    <p class="hero-proof">5 features at launch · ~$0.20 of AI per deliverable · you pay for output, not hours</p>
+    <div class="trust-row">
+      <span>⚡ ~15 min delivery</span>
+      <span>🔒 Secure Stripe checkout</span>
+      <span>↩ 7-day redo-or-refund</span>
+    </div>
   </section>
 
+  <!-- ============ THE WORK — before/after showpieces first ============ -->
+  <section id="work">
+    <div class="eyebrow-wrap"><p class="eyebrow">The work</p></div>
+    <h2 class="sec-title">Don't take our word for it. Drag it.</h2>
+    <p class="sec-sub">Real output from the same pipeline that produces your deliverable. Every image feature works in two passes: raw AI artwork first, then real typography composited on top — never AI-guessed letters.</p>
+    <div class="ba-slider-grid">
+      <figure class="ba-slider reveal" data-ba>
+        <img class="ba-img" src="samples/ba-ad-after.jpg" alt="Finished ad creative with real typography" loading="eager" fetchpriority="high" draggable="false">
+        <div class="ba-top">
+          <img class="ba-img" src="samples/ba-ad-before.jpg" alt="Raw AI artwork before typography" loading="eager" fetchpriority="high" draggable="false">
+        </div>
+        <div class="ba-handle"><span>⟨ ⟩</span></div>
+        <span class="ba-tag tag-before">Raw artwork</span>
+        <span class="ba-tag tag-after">Final creative</span>
+        <figcaption>Ad Creative Pack — Ember &amp; Oak</figcaption>
+      </figure>
+      <figure class="ba-slider reveal" data-ba>
+        <img class="ba-img" src="samples/ba-logo-after.jpg" alt="Finished logo lockup with typeset wordmark" loading="lazy" draggable="false">
+        <div class="ba-top">
+          <img class="ba-img" src="samples/ba-logo-before.jpg" alt="Logo mark before the wordmark is set" loading="lazy" draggable="false">
+        </div>
+        <div class="ba-handle"><span>⟨ ⟩</span></div>
+        <span class="ba-tag tag-before">The mark</span>
+        <span class="ba-tag tag-after">Mark + wordmark</span>
+        <figcaption>Logo Refresh — coffee shop concept</figcaption>
+      </figure>
+    </div>
+
+    <div class="ba-grid">
+      <article class="ba-card ba-before reveal">
+        <span class="ba-label">Before</span>
+        <blockquote>"Experience the Flavor of BROOKLYN"<br><span style="font-size:14px">Delicious, innovative, culturally-sensitive meals delivered to your door.</span></blockquote>
+        <p class="ba-meta">A real hero section, pasted in as-is.</p>
+      </article>
+      <article class="ba-card ba-after reveal">
+        <span class="ba-label">After — Hero Rewrite preview</span>
+        <ul>
+          <li><strong>"Get Dietitian-Approved Meals Delivered to Your NY Home"</strong><span class="why">Outcome-first — states the specific result for the audience.</span></li>
+          <li><strong>"Chef-Inspired Meals, Delivered from Brooklyn to Your Door"</strong><span class="why">Mechanism — the Brooklyn origin matters to this buyer.</span></li>
+          <li><strong>"No Cooking Required: Free Meals for NY Medicaid Members, Delivered"</strong><span class="why">Objection-flip — removes the cooking barrier up front.</span></li>
+        </ul>
+        <p class="ba-meta">Free preview gives 3 headlines. The $49 unlock adds the full rewrite: subhead, CTA copy, trust bullets, and the reasoning.</p>
+      </article>
+    </div>
+    <div class="ba-grid">
+      <article class="ba-card ba-before reveal">
+        <span class="ba-label">Before</span>
+        <p style="margin:0"><span class="score-ring">40</span><span style="color:var(--muted)">/100</span></p>
+        <p class="ba-meta">First-impression score for a real homepage. Biggest conversion killer: repetitive, lengthy copy — "Who We Serve" and "Our Menus" repeat so often the value proposition gets buried.</p>
+      </article>
+      <article class="ba-card ba-after reveal">
+        <span class="ba-label">After — Teardown preview</span>
+        <blockquote style="text-decoration:none;color:var(--text)">Cut the repeated sections, lead with the one line a first-time visitor needs: what you get, who it's for, what to do next.</blockquote>
+        <p class="ba-meta">Free preview gives the score, the single biggest killer, and one fix. The $49 unlock is the full 10-point annotated teardown with specific fixes and 3 prioritized rewrites. Mobile and speed are labeled "not assessable from inputs" — we don't guess.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY — fresh from the studio ============ -->
+  <section id="gallery">
+    <div class="eyebrow-wrap"><p class="eyebrow">Fresh from the studio</p></div>
+    <h2 class="sec-title">Twelve ways it can look.</h2>
+    <p class="sec-sub">Real output from validation runs — swipe through.</p>
+    <div class="work-strip">
+      <article class="work-card reveal">
+        <img src="samples/ad-1.png" alt="Sample ad creative: candle brand" loading="lazy">
+        <div class="work-cap"><strong>Ad Creative Pack</strong>Candle brand · 1:1 creative</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/logo-1.png" alt="Sample logo concept: coffee shop mark" loading="lazy">
+        <div class="work-cap"><strong>Logo Refresh</strong>Coffee shop · concept direction</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/social-1.png" alt="Sample social template" loading="lazy">
+        <div class="work-cap"><strong>Social Launch Kit</strong>Promo template · day 1</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/ad-2.png" alt="Sample ad creative" loading="lazy">
+        <div class="work-cap"><strong>Ad Creative Pack</strong>Second angle · 1:1 creative</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/logo-2.png" alt="Sample logo concept: second direction" loading="lazy">
+        <div class="work-cap"><strong>Logo Refresh</strong>Second direction</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/social-2.png" alt="Sample social template" loading="lazy">
+        <div class="work-cap"><strong>Social Launch Kit</strong>Educational template</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/ad-4.jpg" alt="Sample ad creative: Ember and Oak candle, price angle" loading="lazy">
+        <div class="work-cap"><strong>Ad Creative Pack</strong>Candle brand · price angle</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/ad-5.jpg" alt="Sample ad creative: Ember and Oak candle, self-care angle" loading="lazy">
+        <div class="work-cap"><strong>Ad Creative Pack</strong>Candle brand · self-care angle</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/social-4.jpg" alt="Sample social template, day 4" loading="lazy">
+        <div class="work-cap"><strong>Social Launch Kit</strong>Promo template · day 4</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/social-5.jpg" alt="Sample social template, day 5" loading="lazy">
+        <div class="work-cap"><strong>Social Launch Kit</strong>Story template · day 5</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/social-6.jpg" alt="Sample social template, day 9" loading="lazy">
+        <div class="work-cap"><strong>Social Launch Kit</strong>Proof template · day 9</div>
+      </article>
+      <article class="work-card reveal">
+        <img src="samples/social-7.jpg" alt="Sample social template, day 10" loading="lazy">
+        <div class="work-cap"><strong>Social Launch Kit</strong>Promo template · day 10</div>
+      </article>
+    </div>
+    <p class="gallery-note">Samples shown clean; free previews are watermarked. <a href="work.html">View the full collection &rarr;</a></p>
+  </section>
+
+  <!-- ============ PRODUCT VIDEO ============ -->
+  <section class="demo reveal" id="demo">
+    <div class="eyebrow-wrap"><p class="eyebrow">Watch it work</p></div>
+    <h2 class="sec-title">A real preview, recorded live.</h2>
+    <p class="sec-sub">No mockups. This is the actual free preview on this site, start to finish.</p>
+    <div class="video-wrap">
+      <video controls playsinline preload="metadata" poster="demo-poster.jpg" aria-label="Screen recording of a real Designful free preview">
+        <source src="demo.mp4" type="video/mp4">
+        Your browser can't play this video — <a href="feature.html?f=hero-rewrite">try a free preview yourself</a> instead.
+      </video>
+    </div>
+    <p class="gallery-note">Unedited except captions — that's the actual output.</p>
+  </section>
+
+  <!-- ============ CATALOG ============ -->
   <section id="catalog">
-    <p class="eyebrow">The catalog</p>
-    <h2>Five ways to fix the thing you're staring at.</h2>
-    <p class="lede">Each one starts with a free teaser. Pay only if the teaser proves it's worth it.</p>
+    <div class="eyebrow-wrap"><p class="eyebrow">The catalog</p></div>
+    <h2 class="sec-title">Five ways to fix the thing you're staring at.</h2>
+    <p class="sec-sub">Each one starts with a free preview. Pay only if the preview proves it's worth it.</p>
     <div class="cards" id="feature-cards"><!-- rendered by JS --></div>
   </section>
 
-  <section id="bundles">
-    <p class="eyebrow">Bundles</p>
-    <h2>Buying more than one? Don't pay full price.</h2>
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="how">
+    <div class="eyebrow-wrap"><p class="eyebrow">How it works</p></div>
+    <h2 class="sec-title">Three steps. No discovery call.</h2>
+    <ol class="steps steps-visual">
+      <li class="reveal"><span class="step-icon">👁</span><strong>See a free preview</strong><p>Paste a URL, describe your brand, or drop in your copy. You get real output in under a minute — not a sales deck.</p></li>
+      <li class="reveal"><span class="step-icon">🔓</span><strong>Unlock for $49</strong><p>If the preview is good, pay once. You get an email receipt and a private link to track your deliverable.</p></li>
+      <li class="reveal"><span class="step-icon">⚡</span><strong>Delivered in minutes</strong><p>The full deliverable lands in your inbox — usually within 15 minutes: PDF report, PNG pack, or copy doc, depending on the feature. No revisions roulette, no agency timeline.</p></li>
+    </ol>
+  </section>
+
+  <!-- ============ REVIEWS ============ -->
+  <section id="reviews">
+    <div class="eyebrow-wrap"><p class="eyebrow">Reviews</p></div>
+    <h2 class="sec-title">What buyers say.</h2>
+    <p class="sec-sub">Sample reactions — illustrative placeholders until real customer reviews come in. Not real reviews.</p>
+    <div class="rating-summary reveal">
+      <div class="review-stars" style="font-size:26px;margin:0">★★★★★</div>
+      <div><strong>4.9 / 5</strong> <span style="color:var(--muted)">average across the sample reactions below*</span></div>
+    </div>
+    <div class="review-grid wall">
+      <article class="review-card reveal">
+        <div class="sample-badge">SAMPLE</div>
+        <div class="review-stars">★★★★★</div>
+        <p>"The teardown found the one thing killing our signup flow. We fixed it the same afternoon."</p>
+        <div class="reviewer"><strong>Dana R.</strong> · SaaS founder <span>· sample reaction</span></div>
+      </article>
+      <article class="review-card reveal">
+        <div class="sample-badge">SAMPLE</div>
+        <div class="review-stars">★★★★★</div>
+        <p>"Three logo directions before my coffee got cold. My designer friend asked who I hired."</p>
+        <div class="reviewer"><strong>Marcus T.</strong> · coffee shop owner <span>· sample reaction</span></div>
+      </article>
+      <article class="review-card reveal">
+        <div class="sample-badge">SAMPLE</div>
+        <div class="review-stars">★★★★☆</div>
+        <p>"The ad creatives looked like a real shoot. Swapped in my product shots and ran them the same day."</p>
+        <div class="reviewer"><strong>Priya S.</strong> · Etsy seller <span>· sample reaction</span></div>
+      </article>
+      <article class="review-card reveal">
+        <div class="sample-badge">SAMPLE</div>
+        <div class="review-stars">★★★★★</div>
+        <p>"Ten days of content in fifteen minutes. My feed finally looks like I have a team."</p>
+        <div class="reviewer"><strong>Jenna K.</strong> · fitness coach <span>· sample reaction</span></div>
+      </article>
+      <article class="review-card reveal">
+        <div class="sample-badge">SAMPLE</div>
+        <div class="review-stars">★★★★★</div>
+        <p>"I ran the free preview at 11pm and paid by 11:05. The full teardown landed before midnight."</p>
+        <div class="reviewer"><strong>Theo B.</strong> · indie hacker <span>· sample reaction</span></div>
+      </article>
+      <article class="review-card reveal">
+        <div class="sample-badge">SAMPLE</div>
+        <div class="review-stars">★★★★★</div>
+        <p>"Our old hero said nothing. The rewrite says exactly what we sell. Obvious in hindsight — that's the point."</p>
+        <div class="reviewer"><strong>Maya L.</strong> · boutique owner <span>· sample reaction</span></div>
+      </article>
+      <article class="review-card reveal">
+        <div class="sample-badge">SAMPLE</div>
+        <div class="review-stars">★★★★☆</div>
+        <p>"The social templates actually match my brand. I stopped paying for stock photos this month."</p>
+        <div class="reviewer"><strong>Chris D.</strong> · realtor <span>· sample reaction</span></div>
+      </article>
+      <article class="review-card reveal">
+        <div class="sample-badge">SAMPLE</div>
+        <div class="review-stars">★★★★★</div>
+        <p>"Fifteen minutes from preview to paid deliverable. My last agency took three weeks for less."</p>
+        <div class="reviewer"><strong>Sam O.</strong> · startup founder <span>· sample reaction</span></div>
+      </article>
+    </div>
+    <p class="gallery-note">*Average of the illustrative sample reactions above — real customer reviews replace these after launch.</p>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section id="pricing">
+    <div class="eyebrow-wrap"><p class="eyebrow">Pricing</p></div>
+    <h2 class="sec-title">One price. No surprises.</h2>
+    <p class="sec-sub">$49 per feature, one time. Doing more than one? Don't pay full price.</p>
     <div class="bundle-grid">
-      <div class="bundle">
+      <div class="bundle reveal">
         <span class="save">Save $48</span>
         <h3>Any 3 for $99</h3>
         <div class="price"><s>$147</s>$99</div>
         <p>Pick any three features. Three full deliverables, each produced within minutes of your unlock. Choose now or decide later — your call.</p>
         <button class="btn btn-primary btn-block" data-buy="bundle-3">Get 3 for $99</button>
+        <p class="price-guarantee" style="text-align:center;margin-top:10px">↩ 7-day redo-or-refund</p>
       </div>
-      <div class="bundle">
+      <div class="bundle featured reveal">
         <span class="save">Save $96</span>
         <h3>Full Studio Pass — $149</h3>
         <div class="price"><s>$245</s>$149</div>
         <p>All five features. Teardown, logo refresh, ad creatives, 10 days of social content, and a rewritten hero. Rebrand week, handled.</p>
         <button class="btn btn-primary btn-block" data-buy="studio-pass">Get the Studio Pass</button>
+        <p class="price-guarantee" style="text-align:center;margin-top:10px">↩ 7-day redo-or-refund</p>
+      </div>
+    </div>
+    <div class="compare-strip reveal">
+      <div class="compare-col">
+        <span class="compare-who">Typical agency</span>
+        <span class="compare-price">$2,000+</span>
+        <span class="compare-time">4+ weeks</span>
+      </div>
+      <div class="compare-col">
+        <span class="compare-who">Typical freelancer</span>
+        <span class="compare-price">$300+</span>
+        <span class="compare-time">~1 week of back-and-forth</span>
+      </div>
+      <div class="compare-col winner">
+        <span class="compare-who">Designful</span>
+        <span class="compare-price">$49</span>
+        <span class="compare-time">~15 minutes</span>
+      </div>
+    </div>
+    <p class="gallery-note">Agency and freelancer figures are typical market ranges for comparable one-off design work — your quotes may vary.</p>
+    <div class="value-grid">
+      <div class="value-card reveal">
+        <div class="value-icon">📦</div>
+        <h3>The full deliverable</h3>
+        <p>A 10-point annotated teardown PDF. 5 ad creatives in 2 ratios with headline variants. 10 days of social templates. Not the preview — the whole thing.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">⚡</div>
+        <h3>In ~15 minutes</h3>
+        <p>From unlock to inbox while your coffee's still hot. No discovery call, no brief, no "we'll circle back next sprint."</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">👑</div>
+        <h3>Yours, forever</h3>
+        <p>Full commercial rights on everything produced. Use it in ads, on your site, in your pitch deck — no attribution, no strings.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-icon">↩</div>
+        <h3>7-day redo-or-refund</h3>
+        <p>If the deliverable isn't usable, we redo it free. Still not right? Full refund. Bad work shouldn't be your problem.</p>
       </div>
     </div>
   </section>
 
-  <section id="how">
-    <p class="eyebrow">How it works</p>
-    <h2>Three steps. No discovery call.</h2>
-    <ol class="steps">
-      <li><strong>Try the free teaser</strong><p>Paste a URL, upload a logo, or describe your product. You get real output in under a minute — not a sales deck.</p></li>
-      <li><strong>Unlock for $49</strong><p>If the teaser is good, pay once. You get an email receipt and a private link to track your deliverable.</p></li>
-      <li><strong>Delivered in minutes</strong><p>The full deliverable lands in your inbox — usually within 15 minutes: PDF report, PNG pack, or copy doc, depending on the feature. No revisions roulette, no agency timeline.</p></li>
-    </ol>
-  </section>
-
+  <!-- ============ FAQ ============ -->
   <section id="faq">
-    <p class="eyebrow">FAQ</p>
-    <h2>Fair questions.</h2>
+    <div class="eyebrow-wrap"><p class="eyebrow">FAQ</p></div>
+    <h2 class="sec-title">Fair questions.</h2>
     <div class="faq">
-      <details>
+      <details class="reveal">
+        <summary>What does the free preview include?</summary>
+        <p>Exactly what each feature page says — real output, watermarked where it includes images. If the preview doesn't impress you, don't pay. That's the whole point.</p>
+      </details>
+      <details class="reveal">
         <summary>Is this really AI doing the work?</summary>
         <p>Yes. Large language models plus image models on Cloudflare, with structured recipes per feature. That's why it's $49 and minutes instead of $4,900 and 4 weeks. We don't pretend a designer touched it — the recipes are the product.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>What exactly do I get for $49?</summary>
-        <p>The full deliverable for that feature — e.g. a 10-point annotated homepage teardown PDF, or 5 ad creatives in 2 ratios with 15 headline variants. Every feature page lists exactly what's included.</p>
+        <p>The full deliverable for that feature — e.g. a 10-point annotated homepage teardown PDF, or 5 ad creatives in 2 ratios with 3 headline variants each. Every feature page lists exactly what's included.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Do you keep my logo / screenshots / copy?</summary>
         <p>We keep your inputs long enough to produce the deliverable, then they're deleted. We never sell data, never train on it, never use your brand in marketing without permission.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>What if the deliverable is bad?</summary>
         <p>Email us within 7 days and we'll redo it once, free. If it's still not usable, you get a full refund. Bad work shouldn't be your problem.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Who owns the output?</summary>
         <p>You do. Full commercial rights, forever. Use it in ads, on your site, wherever.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Is there a subscription?</summary>
         <p>No. Every feature is a one-time $49. Bundles are one-time too. If we add features later, you buy only the ones you want.</p>
       </details>
     </div>
   </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final-cta reveal">
+    <h2>The thing you're staring at isn't going to fix itself.</h2>
+    <p class="sec-sub">See a free preview. Pay $49 only if it's worth it.</p>
+    <a class="btn btn-primary" href="#catalog">Start with a free preview</a>
+  </section>
 </main>
 
+<div class="recent-work" data-recent-work></div>
 <footer>
-  <div class="inner">
-    <span>© 2026 Designful. Teaser free, deliverables $49, honesty included.</span>
-    <span><a href="index.html#faq">FAQ</a> · <a href="mailto:info@mehyar.us">Contact</a></span>
+  <div class="inner footer-grid">
+    <div class="subscribe-block">
+      <strong>Get teardown-grade design tips</strong>
+      <p class="muted">One short email when we ship new work. No spam — unsubscribe anytime.</p>
+      <form class="subscribe-form" data-subscribe-form novalidate>
+        <div class="subscribe-row">
+          <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address (required)" autocomplete="email">
+          <input type="tel" name="phone" placeholder="Phone (optional)" aria-label="Phone number (optional)" autocomplete="tel">
+          <input type="text" name="zip" placeholder="ZIP (optional)" aria-label="ZIP code (optional)" inputmode="numeric" autocomplete="postal-code">
+        </div>
+        <label class="sms-consent"><input type="checkbox" name="sms_consent" value="true"> <span>Text me about my preview <small>(optional — standard message rates may apply)</small></span></label>
+        <div class="subscribe-row">
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+          <p class="subscribe-msg" role="status" hidden></p>
+        </div>
+      </form>
+    </div>
+    <div class="footer-base">
+      <span>© 2026 Designful. Preview free, deliverables $49, honesty included.</span>
+      <span><a href="index.html#faq">FAQ</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="mailto:info@mehyar.us">Contact</a></span>
+    </div>
   </div>
 </footer>
+
+<!-- Sticky mobile CTA — app-style bottom bar, shown after the hero -->
+<div class="sticky-cta" id="sticky-cta" hidden>
+  <span class="sticky-cta-text"><strong>$49</strong> one-time · free preview first</span>
+  <a class="btn btn-primary" href="#catalog">Start a project</a>
+</div>
 
 <!-- Buy modal -->
 <div class="modal" id="buy-modal" hidden>
@@ -144,21 +454,79 @@
 <script src="app.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+  var THUMBS = {
+    "logo-refresh": "samples/logo-1.png",
+    "ad-creative-pack": "samples/ad-1.png",
+    "social-launch-kit": "samples/social-1.png"
+  };
+  var TEXT_THUMB = {
+    "homepage-teardown": '<div class="card-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0b1220,#131c33);aspect-ratio:16/9;border-bottom:1px solid var(--line)"><span style="font-size:15px;color:var(--muted)">First-impression score: <strong style="color:var(--text);font-size:28px">40</strong>/100</span></div>',
+    "hero-rewrite": '<div class="card-thumb" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#131c33,#1a2340);aspect-ratio:16/9;border-bottom:1px solid var(--line);padding:18px"><span style="font-size:15px;color:var(--text);font-weight:700;text-align:center">"Get Dietitian-Approved Meals Delivered to Your NY Home"</span></div>'
+  };
   var host = document.getElementById("feature-cards");
   DESIGNFUL_CATALOG.filter(function (p) { return p.kind === "single"; }).forEach(function (p) {
     var card = document.createElement("div");
-    card.className = "card";
+    card.className = "card reveal in";
+    var thumb = THUMBS[p.slug]
+      ? '<img class="card-thumb" src="' + THUMBS[p.slug] + '" alt="' + esc(p.name) + ' sample output" loading="lazy">'
+      : (TEXT_THUMB[p.slug] || "");
     card.innerHTML =
-      '<span class="tag">Free teaser</span>' +
+      thumb +
+      '<div class="card-body">' +
+      '<span class="tag">Free preview</span>' +
       "<h3>" + esc(p.name) + "</h3>" +
       '<p class="pitch">' + esc(p.pitch) + "</p>" +
       '<p class="teaser">' + esc(p.teaser_desc) + "</p>" +
       '<div class="price-row">' +
         '<span class="price">$49 <small>one-time</small></span>' +
-        '<a class="btn btn-ghost" href="feature.html?f=' + p.slug + '">Try free</a>' +
+        '<a class="btn btn-ghost" href="feature.html?f=' + p.slug + '">Preview free</a>' +
+      "</div>" +
+      '<p class="price-guarantee">↩ 7-day redo-or-refund</p>' +
       "</div>";
     host.appendChild(card);
   });
+
+  /* reveal-on-scroll */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+
+  /* draggable before/after sliders */
+  document.querySelectorAll("[data-ba]").forEach(function (fig) {
+    var dragging = false;
+    function setPos(clientX) {
+      var r = fig.getBoundingClientRect();
+      var pct = ((clientX - r.left) / r.width) * 100;
+      pct = Math.max(4, Math.min(96, pct));
+      fig.style.setProperty("--pos", pct + "%");
+    }
+    fig.addEventListener("pointerdown", function (e) {
+      dragging = true;
+      try { fig.setPointerCapture(e.pointerId); } catch (err) {}
+      setPos(e.clientX);
+    });
+    fig.addEventListener("pointermove", function (e) { if (dragging) setPos(e.clientX); });
+    ["pointerup", "pointercancel", "pointerleave"].forEach(function (ev) {
+      fig.addEventListener(ev, function () { dragging = false; });
+    });
+  });
+
+  /* sticky mobile CTA — appears past the hero, hides at the footer */
+  var sticky = document.getElementById("sticky-cta");
+  var footer = document.querySelector("footer");
+  function updateSticky() {
+    if (window.innerWidth >= 720) { sticky.hidden = true; return; }
+    var past = window.scrollY > 520;
+    var footVisible = false;
+    if (footer) { footVisible = footer.getBoundingClientRect().top < window.innerHeight; }
+    sticky.hidden = !(past && !footVisible);
+  }
+  window.addEventListener("scroll", updateSticky, { passive: true });
+  window.addEventListener("resize", updateSticky);
+  updateSticky();
 
   /* PWA registration — safe to attempt in dev */
   if ("serviceWorker" in navigator) {

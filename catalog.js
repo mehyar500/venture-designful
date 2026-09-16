@@ -3,7 +3,7 @@
  * id: stable product_id sent to checkout
  * price_cents: one-time, USD
  * pitch: the one-line promise (customer-facing)
- * teaser_desc: exactly what the free teaser gives you (honest, no inflation)
+ * teaser_desc: exactly what the free preview gives you (honest, no inflation)
  * inputs: what the teaser form collects
  * deliverable: what the paid version contains
  * turnaround: honest SLA
@@ -15,7 +15,7 @@ const DESIGNFUL_CATALOG = [
     name: "Homepage Teardown",
     price_cents: 4900,
     pitch: "Find out in 60 seconds why your homepage isn't converting.",
-    teaser_desc: "Paste your URL. Get an AI first-impression score (0–100), the single biggest conversion killer, and one line on how to fix it. Instant, free.",
+    teaser_desc: "Paste your URL. Get an AI first-impression score (0–100), the single biggest conversion killer, and one line on how to fix it. Free, instant.",
     inputs: [
       { key: "url", type: "url", label: "Your homepage URL", placeholder: "https://your-site.com" }
     ],
@@ -29,7 +29,7 @@ const DESIGNFUL_CATALOG = [
     name: "Logo Refresh",
     price_cents: 4900,
     pitch: "Your logo, reimagined — 3 directions in minutes.",
-    teaser_desc: "Describe your brand. Get 1 AI restyle concept direction plus a watermarked preview render. Free.",
+    teaser_desc: "Describe your brand. See 1 AI restyle concept direction with a watermarked preview render — free.",
     inputs: [
       { key: "brand_name", type: "text", label: "Brand name", placeholder: "Corner Cup" },
       { key: "industry", type: "text", label: "Industry (optional)", optional: true, placeholder: "neighborhood coffee shop" },
@@ -46,7 +46,7 @@ const DESIGNFUL_CATALOG = [
     name: "Ad Creative Pack",
     price_cents: 4900,
     pitch: "5 scroll-stoppers for your next ad run.",
-    teaser_desc: "Describe your product in a few lines. Get 1 ad image (1:1, watermarked) generated for it. Free.",
+    teaser_desc: "Describe your product in a few lines. See 1 ad image (1:1, watermarked preview) generated for it — free.",
     inputs: [
       { key: "product", type: "textarea", label: "Describe your product", placeholder: "What it is, who it's for, why it's better. 2–3 sentences is plenty." }
     ],
@@ -60,7 +60,7 @@ const DESIGNFUL_CATALOG = [
     name: "Social Launch Kit",
     price_cents: 4900,
     pitch: "10 days of on-brand content, done.",
-    teaser_desc: "Drop a short brand blurb. Get your 3 content pillars plus 1 finished post template with a watermarked preview visual. Free.",
+    teaser_desc: "Drop a short brand blurb. See your 3 content pillars plus 1 finished post template with a watermarked preview visual — free.",
     inputs: [
       { key: "brand_name", type: "text", label: "Brand name (optional)", optional: true, placeholder: "Ember & Oak" },
       { key: "brand", type: "textarea", label: "Brand blurb", placeholder: "What you sell, who it's for — 2-3 sentences." }
@@ -75,7 +75,7 @@ const DESIGNFUL_CATALOG = [
     name: "Hero Rewrite",
     price_cents: 4900,
     pitch: "A hero section that actually sells.",
-    teaser_desc: "Paste your current hero copy. Get 3 rewritten headlines back, instantly. Free.",
+    teaser_desc: "Paste your current hero copy. Get 3 rewritten headlines back, instantly — free.",
     inputs: [
       { key: "hero", type: "textarea", label: "Your current hero copy", placeholder: "Paste your headline, subhead, and CTA as they read today." }
     ],

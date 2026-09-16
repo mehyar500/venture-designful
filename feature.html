@@ -3,11 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Designful — Feature</title>
-<meta name="description" content="Try the free teaser. Unlock the full deliverable for $49, one time.">
+<title>Designful features — free preview, $49 full deliverable</title>
+<meta name="description" content="Try any Designful feature free — real AI output, watermarked preview. Unlock the full deliverable for $49, one time. Homepage teardown, logo refresh, ad creatives, social kit, hero rewrite.">
+<link rel="canonical" href="https://designful.mehyar.us/feature.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Designful">
+<meta property="og:title" content="Designful features — free preview, $49 full deliverable">
+<meta property="og:description" content="Try any feature free with a real watermarked preview. Unlock the full deliverable for $49, one time.">
+<meta property="og:url" content="https://designful.mehyar.us/feature.html">
+<meta property="og:image" content="https://designful.mehyar.us/demo-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Designful features — free preview, $49 full deliverable">
+<meta name="twitter:description" content="Try any feature free with a real watermarked preview. Unlock the full deliverable for $49, one time.">
+<meta name="twitter:image" content="https://designful.mehyar.us/demo-poster.jpg">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#7c6cf6">
+<meta name="theme-color" content="#0a1220">
 <link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ItemList","name":"Designful features","itemListElement":[
+{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Homepage Teardown","description":"10-point annotated homepage teardown with conversion fixes, delivered in about 15 minutes.","brand":{"@type":"Brand","name":"Designful"},"offers":{"@type":"Offer","price":"49","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://designful.mehyar.us/feature.html?f=homepage-teardown"}}},
+{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Logo Refresh","description":"Three polished logo concepts plus a usage sheet, delivered in about 15 minutes.","brand":{"@type":"Brand","name":"Designful"},"offers":{"@type":"Offer","price":"49","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://designful.mehyar.us/feature.html?f=logo-refresh"}}},
+{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Ad Creative Pack","description":"5 ad creatives in 2 ratios (1:1 + 9:16), each with 3 headline variants, delivered in about 15 minutes.","brand":{"@type":"Brand","name":"Designful"},"offers":{"@type":"Offer","price":"49","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://designful.mehyar.us/feature.html?f=ad-creative-pack"}}},
+{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Social Launch Kit","description":"10 done-for-you social templates (visuals + captions) across 3 content pillars, delivered in about 15 minutes.","brand":{"@type":"Brand","name":"Designful"},"offers":{"@type":"Offer","price":"49","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://designful.mehyar.us/feature.html?f=social-launch-kit"}}},
+{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Hero Rewrite","description":"5 headlines plus subhead, CTA copy, trust bullets and conversion notes, delivered in about 15 minutes.","brand":{"@type":"Brand","name":"Designful"},"offers":{"@type":"Offer","price":"49","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://designful.mehyar.us/feature.html?f=hero-rewrite"}}}
+]}
+</script>
 </head>
 <body>
 
@@ -15,9 +35,11 @@
   <div class="inner">
     <a class="brand" href="index.html">Design<span>ful</span></a>
     <nav class="nav">
+      <a href="work.html">Work</a>
       <a href="index.html#catalog">Catalog</a>
-      <a href="index.html#bundles">Bundles</a>
+      <a href="index.html#reviews">Reviews</a>
       <a href="index.html#faq">FAQ</a>
+      <a class="nav-cta" href="index.html#catalog">Start a project</a>
     </nav>
   </div>
 </header>
@@ -26,18 +48,44 @@
   <a class="back" href="index.html#catalog">← Back to catalog</a>
 
   <section class="feature-hero">
-    <p class="eyebrow">Free teaser</p>
+    <p class="eyebrow">Free preview</p>
     <h1 id="f-name"></h1>
     <p class="lede" id="f-pitch"></p>
     <p class="turnaround" id="f-turnaround"></p>
   </section>
 
   <section>
-    <h2>Try it free, right now</h2>
+    <h2>See what you'll get — free preview</h2>
     <p class="lede" id="f-teaser-desc"></p>
     <div id="teaser-form-host"></div>
     <div class="status" id="teaser-status"></div>
     <div id="teaser-result"></div>
+  </section>
+
+  <section class="demo reveal">
+    <div class="eyebrow-wrap"><p class="eyebrow">Watch it work</p></div>
+    <div class="video-wrap">
+      <video controls playsinline preload="metadata" poster="demo-poster.jpg" aria-label="Screen recording of a real Designful free preview">
+        <source src="demo.mp4" type="video/mp4">
+        Your browser can't play this video — <a href="index.html#catalog">try a free preview yourself</a> instead.
+      </video>
+    </div>
+    <p class="gallery-note">A real free preview, recorded live on this site. Unedited except captions.</p>
+  </section>
+
+  <section id="f-ba-section" hidden>
+    <p class="eyebrow">Before / after</p>
+    <h2>See the difference.</h2>
+    <p class="lede" id="f-ba-caption"></p>
+    <div class="ba-grid" id="f-ba-grid"></div>
+  </section>
+
+  <section id="f-gallery-section" hidden>
+    <p class="eyebrow">Sample output</p>
+    <h2>Made with Designful.</h2>
+    <p class="lede" id="f-gallery-caption"></p>
+    <div class="work-grid" id="f-gallery-grid"></div>
+    <p class="gallery-note">Samples shown clean; free previews are watermarked. <a href="work.html">See more in the studio collection &rarr;</a></p>
   </section>
 
   <section>
@@ -46,20 +94,39 @@
       <h3>The full deliverable</h3>
       <p id="f-deliverable"></p>
     </div>
-    <div class="unlock-box">
+    <div class="unlock-box" id="unlock-box">
       <div>
         <span class="price">$49 <small style="color:var(--muted);font-weight:400;font-size:14px">one-time</small></span>
-        <p>No subscription. Delivered within <span id="f-sla"></span>.</p>
+        <p>No subscription. Delivered within <span id="f-sla"></span>. ↩ 7-day redo-or-refund.</p>
       </div>
       <button class="btn btn-primary" id="f-buy">Unlock the full deliverable</button>
     </div>
   </section>
 </main>
 
+<div class="recent-work" data-recent-work></div>
 <footer>
-  <div class="inner">
-    <span>© 2026 Designful. Teaser free, deliverables $49, honesty included.</span>
-    <span><a href="index.html#faq">FAQ</a> · <a href="mailto:info@mehyar.us">Contact</a></span>
+  <div class="inner footer-grid">
+    <div class="subscribe-block">
+      <strong>Get teardown-grade design tips</strong>
+      <p class="muted">One short email when we ship new work. No spam — unsubscribe anytime.</p>
+      <form class="subscribe-form" data-subscribe-form novalidate>
+        <div class="subscribe-row">
+          <input type="email" name="email" placeholder="you@example.com" required aria-label="Email address (required)" autocomplete="email">
+          <input type="tel" name="phone" placeholder="Phone (optional)" aria-label="Phone number (optional)" autocomplete="tel">
+          <input type="text" name="zip" placeholder="ZIP (optional)" aria-label="ZIP code (optional)" inputmode="numeric" autocomplete="postal-code">
+        </div>
+        <label class="sms-consent"><input type="checkbox" name="sms_consent" value="true"> <span>Text me about my preview <small>(optional — standard message rates may apply)</small></span></label>
+        <div class="subscribe-row">
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+          <p class="subscribe-msg" role="status" hidden></p>
+        </div>
+      </form>
+    </div>
+    <div class="footer-base">
+      <span>© 2026 Designful. Preview free, deliverables $49, honesty included.</span>
+      <span><a href="index.html#faq">FAQ</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="mailto:info@mehyar.us">Contact</a></span>
+    </div>
   </div>
 </footer>
 
@@ -94,6 +161,7 @@
 
 <script src="catalog.js"></script>
 <script src="app.js"></script>
+<script src="samples.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   var slug = new URLSearchParams(window.location.search).get("f");
@@ -116,6 +184,24 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("f-sla").textContent = product.turnaround;
   document.getElementById("f-turnaround").textContent =
     "Full deliverable: " + product.turnaround + " turnaround after unlock.";
+
+  /* Before/after + sample gallery from real validation output */
+  var samples = (window.DESIGNFUL_SAMPLES || {})[product.slug];
+  if (samples && samples.before && samples.after) {
+    document.getElementById("f-ba-caption").textContent = samples.caption || "";
+    document.getElementById("f-ba-grid").innerHTML =
+      '<article class="ba-card ba-before"><span class="ba-label">' + esc(samples.before.label) + "</span>" + samples.before.html + "</article>" +
+      '<article class="ba-card ba-after"><span class="ba-label">' + esc(samples.after.label) + "</span>" + samples.after.html + "</article>";
+    document.getElementById("f-ba-section").hidden = false;
+  }
+  if (samples && samples.gallery && samples.gallery.length) {
+    document.getElementById("f-gallery-caption").textContent = samples.caption || "";
+    document.getElementById("f-gallery-grid").innerHTML = samples.gallery.map(function (g) {
+      return '<article class="work-card"><img src="' + esc(g.src) + '" alt="' + esc(g.cap) + '" loading="lazy">' +
+        '<div class="work-cap"><strong>' + esc(product.name) + "</strong>" + esc(g.cap) + "</div></article>";
+    }).join("");
+    document.getElementById("f-gallery-section").hidden = false;
+  }
 
   var buyBtn = document.getElementById("f-buy");
   buyBtn.setAttribute("data-buy", product.slug);

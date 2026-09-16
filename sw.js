@@ -1,14 +1,34 @@
-/* Designful service worker — minimal stub (dev). Cache-first for static assets. */
-const CACHE = "designful-v1";
+/* Designful service worker — cache-first for static assets. */
+const CACHE = "designful-v6";
 const STATIC = [
   "index.html",
   "feature.html",
+  "work.html",
   "success.html",
   "deliverable.html",
+  "privacy.html",
+  "terms.html",
   "styles.css",
   "app.js",
   "catalog.js",
-  "manifest.json"
+  "samples.js",
+  "compositor.js",
+  "manifest.json",
+  "sitemap.xml",
+  "robots.txt",
+  "llms.txt",
+  "demo.mp4",
+  "demo-poster.jpg",
+  "samples/ad-4.jpg",
+  "samples/ad-5.jpg",
+  "samples/social-4.jpg",
+  "samples/social-5.jpg",
+  "samples/social-6.jpg",
+  "samples/social-7.jpg",
+  "samples/ba-ad-before.jpg",
+  "samples/ba-ad-after.jpg",
+  "samples/ba-logo-before.jpg",
+  "samples/ba-logo-after.jpg"
 ];
 
 self.addEventListener("install", function (event) {

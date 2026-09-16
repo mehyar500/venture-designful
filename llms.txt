@@ -1,0 +1,60 @@
+# Designful
+
+> AI design deliverables in about 15 minutes, $49 flat per feature.
+> Free watermarked preview before you pay. No agency, no retainer, no subscription.
+
+## What it is
+
+Designful (https://designful.mehyar.us/) sells one-time AI design deliverables
+for a flat $49 per feature. Every feature offers a free preview of real output
+(watermarked where it includes images); you pay only if the preview impresses
+you. 7-day redo-or-refund on every purchase. Full commercial rights included.
+
+## Features ($49 each, one-time)
+
+- [Homepage Teardown](https://designful.mehyar.us/feature.html?f=homepage-teardown):
+  10-point annotated homepage teardown with conversion fixes. Free preview:
+  first-impression score, biggest conversion killer, the one fix.
+- [Logo Refresh](https://designful.mehyar.us/feature.html?f=logo-refresh):
+  three polished logo concepts plus a usage sheet. Free preview: one concept
+  direction with watermarked artwork.
+- [Ad Creative Pack](https://designful.mehyar.us/feature.html?f=ad-creative-pack):
+  5 ad creatives in 2 ratios (1:1 + 9:16), each with 3 headline variants.
+  Free preview: one angle, 3 headlines, watermarked artwork.
+- [Social Launch Kit](https://designful.mehyar.us/feature.html?f=social-launch-kit):
+  10 done-for-you social templates (visuals + captions) across 3 content
+  pillars. Free preview: pillars plus 1 finished template, watermarked.
+- [Hero Rewrite](https://designful.mehyar.us/feature.html?f=hero-rewrite):
+  5 headlines plus subhead, CTA copy, trust bullets and conversion notes.
+  Free preview: 3 rewritten headlines.
+
+## Bundles
+
+- Any 3 features for $99 (one-time).
+- Full Studio Pass (all 5) for $149 (one-time).
+
+## FAQ (short answers)
+
+- What does the free preview include? Exactly what each feature page says —
+  real output, watermarked where it includes images. If the preview doesn't
+  impress you, don't pay.
+- Is this really AI doing the work? Yes: large language models plus image
+  models on Cloudflare, with structured recipes per feature. No designer
+  touches it; the recipes are the product.
+- What exactly do I get for $49? The full deliverable for that feature, as
+  listed on its feature page.
+- Do you keep my inputs? Kept only long enough to produce the deliverable,
+  then deleted. Never sold, never used for training, never used in marketing
+  without permission.
+- What if the deliverable is bad? Redo once free within 7 days; full refund
+  if it's still not usable.
+- Who owns the output? You do — full commercial rights, forever.
+- Is there a subscription? No. Everything is one-time.
+
+## Honesty policy
+
+- Reviews shown as SAMPLE are illustrative placeholders, not real customers.
+- "Typical agency $2,000+ / 4+ weeks" and "typical freelancer $300+ / about a
+  week" are rough market comparisons; outside quotes vary.
+- Paid deliverables ship clean and full-resolution; free previews are
+  watermarked and display-size-limited.

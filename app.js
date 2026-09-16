@@ -183,7 +183,7 @@ function buildTeaserForm(product, containerId) {
   const btn = document.createElement("button");
   btn.type = "submit";
   btn.className = "btn btn-primary";
-  btn.textContent = "Get my free teaser";
+  btn.textContent = "Get my free preview";
   form.appendChild(btn);
 
   const host = document.getElementById(containerId);
@@ -249,7 +249,7 @@ async function submitTeaser(product, form) {
     resultEl.innerHTML =
       '<div class="dev-fallback">' +
       "<strong>Dev backend not running.</strong><br>" +
-      "This is where your free teaser would appear. The form would POST to " +
+      "This is where your free preview would appear. The form would POST to " +
       "<code>" + esc(TEASER_URL) + "</code> with <code>product_id: " + esc(product.id) + "</code> " +
       "and your input, and render the AI result here." +
       "</div>";
@@ -257,16 +257,22 @@ async function submitTeaser(product, form) {
 }
 
 /* Renders the real teaser backend shape: {ok, feature, teaser: {...}}.
- * Image teasers (logo/ad/social) carry teaser.image as a data: URI — rendered
- * and watermarked in place via canvas (previews, not deliverables). */
+ * Image teasers (logo/ad/social) carry teaser.image as a data: URI — since
+ * 2026-09-15 the teaser API server-composites the diagonal DESIGNFUL PREVIEW
+ * watermark into an SVG derivative, so the client renders it as-is (previews,
+ * never deliverables). Every gated output carries a FREE PREVIEW badge and
+ * an upgrade CTA. */
 function renderTeaserResult(product, json) {
   const resultEl = $("#teaser-result");
   const t = (json && json.teaser) || {};
-  let html = "";
+  let html = '<div class="free-preview-banner" role="note">' +
+    '<span class="free-preview-badge">FREE PREVIEW</span>' +
+    '<span>This is a watermarked taste. <a href="#unlock-box">Unlock the full $49 deliverable</a> for clean, full-resolution files.</span>' +
+    '</div>';
   function imgBlock(src) {
     if (!src) return "";
-    return '<div class="gallery"><img src="' + esc(src) + '" alt="Teaser preview — watermarked" loading="lazy"></div>' +
-      '<p class="preview-note">Watermarked preview. The paid deliverable ships clean, high-res files.</p>';
+    return '<div class="gallery"><img src="' + esc(src) + '" alt="Free preview — watermarked DESIGNFUL PREVIEW" loading="lazy"></div>' +
+      '<p class="preview-note">Server-watermarked free preview. The $49 deliverable ships clean, full-resolution files.</p>';
   }
   if (product.slug === "homepage-teardown") {
     html = "<h3>First-impression score: " + esc(String(t.score)) + "/100</h3>" +
@@ -334,6 +340,7 @@ function intakeParams(product) {
 /* ---------- global wiring (every page) ---------- */
 document.addEventListener("DOMContentLoaded", function () {
   wireBuyButtons();
+  initSubscribeForms();
 
   /* DEV_MODE banner — unmistakable when ?dev=1 is on. */
   if (DEV_MODE && document.body) {
@@ -394,4 +401,70 @@ function collectBundleParams() {
   var checked = $all('#buy-form input[name="bundle_choice"]:checked')
     .map(function (c) { return c.value; });
   return { choices: checked };
+}
+
+/* Footer newsletter subscribe: email required; phone + ZIP optional.
+ * POSTs to /api/subscribe; shows inline success/error. Never blocks. */
+function initSubscribeForms() {
+  var forms = document.querySelectorAll("[data-subscribe-form]");
+  forms.forEach(function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var msg = form.querySelector(".subscribe-msg");
+      var btn = form.querySelector('button[type="submit"]');
+      var email = form.email ? form.email.value.trim() : "";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (msg) { msg.hidden = false; msg.textContent = "Please enter a valid email address."; }
+        return;
+      }
+      if (btn) { btn.disabled = true; btn.textContent = "Subscribing…"; }
+      fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          phone: form.phone ? form.phone.value.trim() : "",
+          zip: form.zip ? form.zip.value.trim() : "",
+          sms_consent: form.sms_consent ? form.sms_consent.checked : false,
+        }),
+      }).then(function (r) { return r.json(); }).then(function (j) {
+        if (msg) {
+          msg.hidden = false;
+          msg.textContent = j && j.ok
+            ? "You're in — check your inbox to confirm."
+            : "Hmm, that didn't go through. Try again in a bit.";
+        }
+        if (j && j.ok) form.reset();
+      }).catch(function () {
+        if (msg) { msg.hidden = false; msg.textContent = "Hmm, that didn't go through. Try again in a bit."; }
+      }).finally(function () {
+        if (btn) { btn.disabled = false; btn.textContent = "Subscribe"; }
+      });
+    });
+  });
+}
+
+/* Recent work strip — injected above the footer on every page. */
+function renderRecentWork() {
+  var spots = document.querySelectorAll("[data-recent-work]");
+  if (!spots.length) return;
+  var items = [
+    { src: "samples/ad-1.png", cap: "Ad Creative Pack" },
+    { src: "samples/logo-1.png", cap: "Logo Refresh" },
+    { src: "samples/social-1.png", cap: "Social Launch Kit" },
+    { src: "samples/ad-4.jpg", cap: "Ad Creative Pack" },
+    { src: "samples/logo-2.png", cap: "Logo Refresh" },
+    { src: "samples/social-4.jpg", cap: "Social Launch Kit" }
+  ];
+  var html = '<div class="recent-work-head"><strong>Recent work</strong><a href="work.html">View the full collection &rarr;</a></div>' +
+    '<div class="recent-strip">' +
+    items.map(function (it) {
+      return '<a class="recent-card" href="work.html"><img src="' + it.src + '" alt="Sample ' + it.cap + ' output" loading="lazy"><span>' + it.cap + ' · $49</span></a>';
+    }).join("") + "</div>";
+  spots.forEach(function (s) { s.innerHTML = html; });
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", renderRecentWork);
+} else {
+  renderRecentWork();
 }

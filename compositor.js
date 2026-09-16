@@ -303,6 +303,10 @@ export function watermarkPreview(canvas, text = "DESIGNFUL — PREVIEW") {
 export function applyWatermarkToImages(container, text) {
   const imgs = Array.from(container.querySelectorAll("img"));
   imgs.forEach((img) => {
+    /* Server-watermarked SVG previews (data:image/svg+xml) already carry the
+     * diagonal DESIGNFUL PREVIEW overlay baked in by the teaser API — skip. */
+    const src = img.getAttribute("src") || "";
+    if (src.indexOf("data:image/svg+xml") === 0) return;
     const swap = () => {
       try {
         const c = document.createElement("canvas");

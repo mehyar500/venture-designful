@@ -37,15 +37,46 @@ function json(data, status = 200) {
 }
 
 
-// Teaser artwork: one QC-gated text-free render per image teaser. The client
-// canvas-composites the watermark (DESIGNFUL — PREVIEW) over it, so the free
-// tier shows real value without giving away clean assets.
+// Teaser artwork: one QC-gated text-free render per image teaser, composited
+// SERVER-SIDE into a watermarked, display-size-limited SVG derivative.
+// The free path never serves the clean master: the response carries a
+// data:image/svg+xml URI with the artwork embedded at 512px display size and
+// a diagonal "DESIGNFUL PREVIEW" text overlay baked in by this function.
+// Paid deliverables (generate.js/deliverable.js) serve clean full-res files.
+const PREVIEW_LABEL = "DESIGNFUL PREVIEW";
+const PREVIEW_DISPLAY = 512; // px — free previews render at half the master size
+
+function b64encodeChunked(str) {
+  // btoa on one giant string can blow the arg/buffer limits; chunk it.
+  let out = "";
+  for (let i = 0; i < str.length; i += 100000) {
+    out += btoa(str.slice(i, i + 100000));
+  }
+  return out;
+}
+
+function watermarkedPreviewSvg(jpegDataUri) {
+  const W = PREVIEW_DISPLAY, H = PREVIEW_DISPLAY;
+  const cx = W / 2, cy = H / 2;
+  const fontSize = 34, rowGap = 88;
+  let rows = "";
+  for (let y = -H / 2; y < H * 1.6; y += rowGap) {
+    rows += `<text x="${cx}" y="${Math.round(y)}" text-anchor="middle">${PREVIEW_LABEL} · ${PREVIEW_LABEL}</text>`;
+  }
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
+    `<image href="${jpegDataUri}" xlink:href="${jpegDataUri}" x="0" y="0" width="${W}" height="${H}" preserveAspectRatio="xMidYMid slice"/>` +
+    `<g transform="rotate(-24 ${cx} ${cy})" font-family="Arial,Helvetica,sans-serif" font-size="${fontSize}" font-weight="bold" letter-spacing="4" fill="#ffffff" fill-opacity="0.30" stroke="#000000" stroke-opacity="0.35" stroke-width="1" style="paint-order:stroke">${rows}</g>` +
+    `</svg>`;
+  return "data:image/svg+xml;base64," + b64encodeChunked(svg);
+}
+
 async function teaserArtwork(env, fluxPrompt, label) {
   if (!fluxPrompt) return null;
   try {
     const art = await generateArtwork(env, fluxPrompt, { label: "teaser:" + label });
     if (!art.ok) return null; // QC exhausted: ship the text teaser, not a dirty image
-    return `data:${art.mime};base64,${art.base64}`;
+    return watermarkedPreviewSvg(`data:${art.mime};base64,${art.base64}`);
   } catch (e) {
     console.error("teaser artwork failed (non-fatal)", label, e && e.message);
     return null;
@@ -279,7 +310,19 @@ export async function onRequestPost({ request, env }) {
     }
     const result = await handler(env, inputs);
     if (result.error) return json({ ok: false, error: result.error }, result.status || 400);
-    return json({ ok: true, feature, teaser: result.data });
+    return json({
+      ok: true,
+      feature,
+      teaser: result.data,
+      preview: {
+        tier: "free",
+        watermarked: true,
+        // Free image previews are server-composited SVG derivatives
+        // (diagonal DESIGNFUL PREVIEW overlay, 512px display). The clean
+        // full-resolution master is only served on the paid path.
+        upgrade: "Unlock the full $49 deliverable for clean, full-resolution files.",
+      },
+    });
   } catch (e) {
     console.error("designful/teaser failed", e && e.message);
     return json({ ok: false, error: "teaser_failed" }, 500);
