@@ -1,60 +1,29 @@
 # Designful
 
-> AI design deliverables in about 15 minutes, $49 flat per feature.
-> Free watermarked preview before you pay. No agency, no retainer, no subscription.
+Designful is an AI design studio that sells one-time AI design deliverables for a flat $49 per feature. Every feature offers a free preview of real output (watermarked where it includes images); you pay only if the preview impresses you. No agency, no retainer, no subscription. 7-day redo-or-refund on every purchase. Full commercial rights on everything produced. Provider: MehyarSoft LLC (https://mehyar.us).
 
-## What it is
+## Key pages
 
-Designful (https://designful.mehyar.us/) sells one-time AI design deliverables
-for a flat $49 per feature. Every feature offers a free preview of real output
-(watermarked where it includes images); you pay only if the preview impresses
-you. 7-day redo-or-refund on every purchase. Full commercial rights included.
+- / — landing page: free previews, feature catalog, pricing, FAQ, studio work gallery
+- /feature.html — feature detail pages (query ?f=): homepage-teardown, logo-refresh, ad-creative-pack, social-launch-kit, hero-rewrite
+- /work.html — the studio collection: real sample output, every piece shoppable at $49
+- /success.html — post-Stripe order confirmation (not indexed); polls payment status
+- /deliverable.html — the buyer's private deliverable page (token-gated, not indexed)
+- /privacy.html — privacy policy
+- /terms.html — terms of service, including the 7-day redo-or-refund policy
+- /llms.txt — this file
 
-## Features ($49 each, one-time)
+## Pricing
 
-- [Homepage Teardown](https://designful.mehyar.us/feature.html?f=homepage-teardown):
-  10-point annotated homepage teardown with conversion fixes. Free preview:
-  first-impression score, biggest conversion killer, the one fix.
-- [Logo Refresh](https://designful.mehyar.us/feature.html?f=logo-refresh):
-  three polished logo concepts plus a usage sheet. Free preview: one concept
-  direction with watermarked artwork.
-- [Ad Creative Pack](https://designful.mehyar.us/feature.html?f=ad-creative-pack):
-  5 ad creatives in 2 ratios (1:1 + 9:16), each with 3 headline variants.
-  Free preview: one angle, 3 headlines, watermarked artwork.
-- [Social Launch Kit](https://designful.mehyar.us/feature.html?f=social-launch-kit):
-  10 done-for-you social templates (visuals + captions) across 3 content
-  pillars. Free preview: pillars plus 1 finished template, watermarked.
-- [Hero Rewrite](https://designful.mehyar.us/feature.html?f=hero-rewrite):
-  5 headlines plus subhead, CTA copy, trust bullets and conversion notes.
-  Free preview: 3 rewritten headlines.
+$49 one-time per feature (Stripe, via the centralized https://mehyar.us/api/pay/checkout). Bundles: any 3 features for $99, Full Studio Pass (all 5) for $149 — all one-time. No subscription. 7-day redo-or-refund: a free redo within 7 days, then a full refund if it's still not usable. Buyer owns the output with full commercial rights, forever.
 
-## Bundles
+## API
 
-- Any 3 features for $99 (one-time).
-- Full Studio Pass (all 5) for $149 (one-time).
+- POST /api/designful/teaser — free: { feature, inputs } → watermarked real-output preview per feature. KV rate-limited per IP.
+- POST /api/designful/generate — paid: { order_token, feature, inputs } → full paid deliverable manifest. Gated on the order access token; idempotent per feature.
+- GET /api/designful/deliverable?token= — token-gated buyer manifest JSON.
+- POST /api/subscribe — { email, phone?, zip?, sms_consent? } newsletter signup. One short email when new work ships; unsubscribe anytime.
 
-## FAQ (short answers)
+## Compliance
 
-- What does the free preview include? Exactly what each feature page says —
-  real output, watermarked where it includes images. If the preview doesn't
-  impress you, don't pay.
-- Is this really AI doing the work? Yes: large language models plus image
-  models on Cloudflare, with structured recipes per feature. No designer
-  touches it; the recipes are the product.
-- What exactly do I get for $49? The full deliverable for that feature, as
-  listed on its feature page.
-- Do you keep my inputs? Kept only long enough to produce the deliverable,
-  then deleted. Never sold, never used for training, never used in marketing
-  without permission.
-- What if the deliverable is bad? Redo once free within 7 days; full refund
-  if it's still not usable.
-- Who owns the output? You do — full commercial rights, forever.
-- Is there a subscription? No. Everything is one-time.
-
-## Honesty policy
-
-- Reviews shown as SAMPLE are illustrative placeholders, not real customers.
-- "Typical agency $2,000+ / 4+ weeks" and "typical freelancer $300+ / about a
-  week" are rough market comparisons; outside quotes vary.
-- Paid deliverables ship clean and full-resolution; free previews are
-  watermarked and display-size-limited.
+Designful makes no income, traffic, conversion, or business-outcome promises; it does not claim human designers touch the work (large language models plus image models with structured recipes), does not claim mobile/speed aspects it labels "not assessable from inputs," and never sells, trains on, or reuses buyer inputs or brands without permission. Review stars and reactions shown on-site as SAMPLE are illustrative placeholders, not real customer reviews — real customer reviews replace them after launch. "Typical agency $2,000+ / 4+ weeks" and "typical freelancer $300+ / about a week" are rough market comparisons; outside quotes vary. Paid deliverables ship clean and full-resolution; free previews are watermarked and display-size-limited.
