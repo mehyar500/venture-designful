@@ -1,6 +1,6 @@
 # Designful
 
-Designful is an AI design studio that sells one-time AI design deliverables for a flat $49 per feature. Every feature offers a free preview of real output (watermarked where it includes images); you pay only if the preview impresses you. No agency, no retainer, no subscription. 7-day redo-or-refund on every purchase. Full commercial rights on everything produced. Provider: MehyarSoft LLC (https://mehyar.us).
+Designful is an AI design studio that sells one-time AI design deliverables for a flat $49 per feature. Every feature offers a free preview of real output (watermarked where it includes images); you pay only if the preview impresses you. No agency, no retainer, no subscription. All sales are final. Full commercial rights on everything produced. Provider: MehyarSoft LLC (https://mehyar.us).
 
 ## Key pages
 
@@ -10,12 +10,12 @@ Designful is an AI design studio that sells one-time AI design deliverables for 
 - /success.html — post-Stripe order confirmation (not indexed); polls payment status
 - /deliverable.html — the buyer's private deliverable page (token-gated, not indexed)
 - /privacy.html — privacy policy
-- /terms.html — terms of service, including the 7-day redo-or-refund policy
+- /terms.html — terms of service
 - /llms.txt — this file
 
 ## Pricing
 
-$49 one-time per feature (Stripe, via the centralized https://mehyar.us/api/pay/checkout). Bundles: any 3 features for $99, Full Studio Pass (all 5) for $149 — all one-time. No subscription. 7-day redo-or-refund: a free redo within 7 days, then a full refund if it's still not usable. Buyer owns the output with full commercial rights, forever.
+$49 one-time per feature (Stripe, via the centralized https://mehyar.us/api/pay/checkout). Bundles: any 3 features for $99, Full Studio Pass (all 5) for $149 — all one-time. No subscription. All sales are final. Buyer owns the output with full commercial rights, forever.
 
 ## API
 
