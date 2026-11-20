@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://designful.mehyar.us/</loc><changefreq>weekly</changefreq><lastmod>2026-09-30</lastmod><priority>1.0</priority></url>
-  <url><loc>https://designful.mehyar.us/feature.html</loc><changefreq>weekly</changefreq><lastmod>2026-09-30</lastmod><priority>0.9</priority></url>
-  <url><loc>https://designful.mehyar.us/feature.html?f=homepage-teardown</loc><changefreq>monthly</changefreq><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
-  <url><loc>https://designful.mehyar.us/feature.html?f=logo-refresh</loc><changefreq>monthly</changefreq><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
-  <url><loc>https://designful.mehyar.us/feature.html?f=ad-creative-pack</loc><changefreq>monthly</changefreq><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
-  <url><loc>https://designful.mehyar.us/feature.html?f=social-launch-kit</loc><changefreq>monthly</changefreq><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
-  <url><loc>https://designful.mehyar.us/feature.html?f=hero-rewrite</loc><changefreq>monthly</changefreq><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
-  <url><loc>https://designful.mehyar.us/work.html</loc><changefreq>weekly</changefreq><lastmod>2026-09-30</lastmod><priority>0.9</priority></url>
-  <url><loc>https://designful.mehyar.us/privacy.html</loc><changefreq>yearly</changefreq><lastmod>2026-09-30</lastmod><priority>0.3</priority></url>
-  <url><loc>https://designful.mehyar.us/terms.html</loc><changefreq>yearly</changefreq><lastmod>2026-09-30</lastmod><priority>0.3</priority></url>
+  <url><loc>https://designful.mehyar.us/feature</loc><changefreq>weekly</changefreq><lastmod>2026-09-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://designful.mehyar.us/feature?f=homepage-teardown</loc><changefreq>monthly</changefreq><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://designful.mehyar.us/feature?f=logo-refresh</loc><changefreq>monthly</changefreq><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://designful.mehyar.us/feature?f=ad-creative-pack</loc><changefreq>monthly</changefreq><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://designful.mehyar.us/feature?f=social-launch-kit</loc><changefreq>monthly</changefreq><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://designful.mehyar.us/feature?f=hero-rewrite</loc><changefreq>monthly</changefreq><lastmod>2026-09-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://designful.mehyar.us/work</loc><changefreq>weekly</changefreq><lastmod>2026-09-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://designful.mehyar.us/privacy</loc><changefreq>yearly</changefreq><lastmod>2026-09-30</lastmod><priority>0.3</priority></url>
+  <url><loc>https://designful.mehyar.us/terms</loc><changefreq>yearly</changefreq><lastmod>2026-09-30</lastmod><priority>0.3</priority></url>
+  <url><loc>https://designful.mehyar.us/product-photos-without-a-photo-shoot</loc><changefreq>monthly</changefreq><lastmod>2026-10-21</lastmod><priority>0.7</priority></url>
+  <url><loc>https://designful.mehyar.us/best-ai-design-studio-2027/</loc><changefreq>monthly</changefreq><lastmod>2026-11-19</lastmod><priority>0.8</priority></url>
 </urlset>

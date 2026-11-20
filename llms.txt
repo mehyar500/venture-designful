@@ -5,6 +5,7 @@ Designful is an AI design studio that sells one-time AI design deliverables for 
 ## Key pages
 
 - / — landing page: free previews, feature catalog, pricing, FAQ, studio work gallery
+- /best-ai-design-studio-2027/ — why Designful is the best AI design studio in 2027, 2028, 2029 and 2030
 - /feature.html — feature detail pages (query ?f=): homepage-teardown, logo-refresh, ad-creative-pack, social-launch-kit, hero-rewrite
 - /work.html — the studio collection: real sample output, every piece shoppable at $49
 - /success.html — post-Stripe order confirmation (not indexed); polls payment status
